@@ -8,11 +8,11 @@ export const AppDataSource = new DataSource({
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
-  synchronize: JSON.parse(process.env.DATABASE_SYNCHRONIZE),
+  synchronize: process.env.DATABASE_SYNCHRONIZE === 'true',
   logging: process.env.NODE_ENV !== 'production',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
-  migrationsTableName: 'typeorm_metadata',
+  migrationsTableName: 'TypeOrmMetaData',
   migrationsRun: false,
   cli: {
     entitiesDir: 'src',

@@ -3,10 +3,15 @@ import {
   Column,
   Entity,
   Generated,
+  OneToOne, JoinColumn,
   Index,
   PrimaryGeneratedColumn,
+  OneToMany,
   Unique,
 } from 'typeorm';
+import { Address } from './address.entity';
+import { Company } from './company.entity';
+import { Post } from '../../post/entities/post.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -20,27 +25,38 @@ export class User {
   @Generated('uuid')
   uuid: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   name: string;
 
-  @Column({ nullable: true })
-  age: number;
-
-  @Column({ nullable: true })
-  address: string;
-
-  @Column({ nullable: true })
-  city: string;
-
-  @Column({ nullable: true })
-  state: string;
+  @Column({ nullable: false })
+  username: string;
 
   @Column()
-  created_at: Date;
+  email: string;
 
   @Column()
-  updated_at: Date;
+  phone: string;
 
   @Column()
-  deleted_at: Date;
+  website: string;
+
+  @OneToOne(() => Address, { cascade: true })
+  @JoinColumn()
+  address: Address;
+
+  @OneToOne(() => Company, { cascade: true })
+  @JoinColumn()
+  company: Company;
+
+  @OneToMany(() => Post, (post) => post.user)
+  posts: Post[];
+
+  @Column()
+  createdAt: Date;
+
+  @Column()
+  updatedAt: Date;
+
+  @Column()
+  deletedAt: Date;
 }

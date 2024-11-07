@@ -9,6 +9,7 @@ import appConfig from './config/app.config';
 import { TypeOrmConfigService } from './database/typeorm-config.service';
 import { DataSource } from 'typeorm';
 import { PostsModule } from './post/posts.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { PostsModule } from './post/posts.module';
     }),
     UserModule,
     PostsModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -3,15 +3,12 @@ import {
   Column,
   Entity,
   Generated,
-  ManyToOne,
   Index,
   PrimaryGeneratedColumn,
-  Unique,
 } from 'typeorm';
-import { User } from '../../user/entities/user.entity';
 
-@Entity({ name: 'posts' })
-export class Post {
+@Entity({ name: 'companies' })
+export class Company {
   @Exclude()
   @PrimaryGeneratedColumn('increment')
   id: number;
@@ -23,13 +20,13 @@ export class Post {
   uuid: string;
 
   @Column()
-  title: string;
+  name: string;
 
-  @Column('text')
-  body: string;
+  @Column()
+  catchPhrase: string;
 
-  @ManyToOne(() => User, (user) => user.posts, { onDelete: 'CASCADE' })
-  user: User;
+  @Column()
+  bs: string;
 
   @Column()
   createdAt: Date;
