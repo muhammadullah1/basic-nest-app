@@ -6,9 +6,11 @@ import {
   ManyToOne,
   Index,
   PrimaryGeneratedColumn,
+  OneToMany,
   Unique,
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
+import { Comment } from '../../comment/entities/comment.entity';
 
 @Entity({ name: 'posts' })
 export class Post {
@@ -30,6 +32,9 @@ export class Post {
 
   @ManyToOne(() => User, (user) => user.posts, { onDelete: 'CASCADE' })
   user: User;
+
+  @OneToMany(() => Comment, (comment) => comment.post)
+  comments: Comment[];
 
   @Column()
   createdAt: Date;

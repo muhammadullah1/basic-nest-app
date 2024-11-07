@@ -10,6 +10,9 @@ import { TypeOrmConfigService } from './database/typeorm-config.service';
 import { DataSource } from 'typeorm';
 import { PostsModule } from './post/posts.module';
 import { CommentModule } from './comment/comment.module';
+import { AlbumModule } from './album/album.module';
+import { PhotoModule } from './photo/photo.module';
+import { TodoModule } from './todo/todo.module';
 
 @Module({
   imports: [
@@ -34,6 +37,9 @@ import { CommentModule } from './comment/comment.module';
     UserModule,
     PostsModule,
     CommentModule,
+    AlbumModule,
+    PhotoModule,
+    TodoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

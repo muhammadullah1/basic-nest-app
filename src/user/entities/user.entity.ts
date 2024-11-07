@@ -2,9 +2,9 @@ import { Exclude, Expose } from 'class-transformer';
 import {
   Column,
   Entity,
-  Generated,
   OneToOne, JoinColumn,
   Index,
+  Generated,
   PrimaryGeneratedColumn,
   OneToMany,
   Unique,
@@ -12,6 +12,8 @@ import {
 import { Address } from './address.entity';
 import { Company } from './company.entity';
 import { Post } from '../../post/entities/post.entity';
+import { Album } from '../../album/entities/album.entity';
+import { Todo } from '../../todo/entities/todo.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -34,6 +36,9 @@ export class User {
   @Column()
   email: string;
 
+  @Exclude({ toPlainOnly: true })
+  password: string;
+
   @Column()
   phone: string;
 
@@ -50,6 +55,12 @@ export class User {
 
   @OneToMany(() => Post, (post) => post.user)
   posts: Post[];
+
+  @OneToMany(() => Album, (album) => album.user)
+  albums: Album[];
+
+  @OneToMany(() => Todo, (todo) => todo.user)
+  todos: Todo[];
 
   @Column()
   createdAt: Date;
