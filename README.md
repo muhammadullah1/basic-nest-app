@@ -75,5 +75,6 @@ Nest is [MIT licensed](LICENSE).
 <!-- run migraion die -->
 
 npm run migration:generate -- src/database/migrations/CreateUsersTable
+npm run migration:create -- src/database/migrations/CreateUsersTabl
 npm run migration:run
 npm run migration:revert
